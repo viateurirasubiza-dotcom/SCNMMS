@@ -81,6 +81,8 @@ body::before{
     animation:rotate 10s linear infinite;
 
     opacity:0.15;
+
+    z-index:0;
 }
 .login-box::-webkit-scrollbar{
 
@@ -131,8 +133,7 @@ body::before{
 
     padding:35px;
 
-    background:
-    rgba(255,255,255,0.08);
+    background:rgba(255,255,255,0.08);
 
     backdrop-filter:blur(15px);
 
@@ -140,8 +141,7 @@ body::before{
 
     border:1px solid rgba(0,234,255,0.4);
 
-    box-shadow:
-    0 0 25px #00eaff;
+    box-shadow:0 0 25px #00eaff;
 
     color:white;
 
@@ -149,6 +149,7 @@ body::before{
 
     position:relative;
 
+    z-index:1;
 }
 @media(max-width:500px){
 
