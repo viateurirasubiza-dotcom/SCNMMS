@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>SCNMMS | Alerts</title>
+
+
+<style>
+
+*{
+
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+
+}
+
+
+
+body{
+
+background:#00111f;
+
+color:white;
+
+}
+
+
+
+/* Header */
+
+
+.header{
+
+padding:25px;
+
+background:#001b2e;
+
+border-bottom:1px solid #00eaff;
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+}
+
+
+.header h1{
+
+color:#00eaff;
+
+}
+
+
+
+.back{
+
+text-decoration:none;
+
+background:#00eaff;
+
+color:#00111f;
+
+padding:10px 20px;
+
+border-radius:20px;
+
+}
+
+
+
+/* Container */
+
+
+.container{
+
+padding:30px;
+
+}
+
+
+
+
+
+/* Health Card */
+
+
+.health{
+
+background:#002033;
+
+padding:25px;
+
+border-radius:15px;
+
+border:1px solid #00eaff;
+
+margin-bottom:30px;
+
+text-align:center;
+
+}
+
+
+
+.health h2{
+
+color:#00eaff;
+
+}
+
+
+
+.status{
+
+font-size:35px;
+
+color:#00ff88;
+
+margin-top:15px;
+
+}
+
+
+
+
+
+/* Alert Cards */
+
+
+.alert-container{
+
+display:grid;
+
+grid-template-columns:repeat(3,1fr);
+
+gap:20px;
+
+}
+
+
+
+.alert{
+
+padding:25px;
+
+border-radius:15px;
+
+background:#002033;
+
+border:1px solid #00445f;
+
+}
+
+
+
+.alert h3{
+
+margin-bottom:15px;
+
+}
+
+
+
+.critical{
+
+border-left:5px solid red;
+
+}
+
+
+
+.warning{
+
+border-left:5px solid orange;
+
+}
+
+
+
+.normal{
+
+border-left:5px solid #00ff88;
+
+}
+
+
+
+.icon{
+
+font-size:35px;
+
+}
+
+
+
+
+.time{
+
+color:#aaa;
+
+font-size:13px;
+
+margin-top:15px;
+
+}
+
+
+
+
+
+/* Table */
+
+
+.section{
+
+margin-top:35px;
+
+background:#002033;
+
+padding:25px;
+
+border-radius:15px;
+
+}
+
+
+
+table{
+
+width:100%;
+
+border-collapse:collapse;
+
+margin-top:20px;
+
+}
+
+
+
+th,td{
+
+padding:15px;
+
+border-bottom:1px solid #00445f;
+
+text-align:center;
+
+}
+
+
+
+th{
+
+color:#00eaff;
+
+}
+
+
+
+.red{
+
+color:red;
+
+}
+
+
+.orange{
+
+color:orange;
+
+}
+
+
+.green{
+
+color:#00ff88;
+
+}
+
+
+
+
+</style>
+
+
+</head>
+
+
+
+<body>
+
+
+
+
+<div class="header">
+
+
+<h1>
+⚠ Network Alerts Center
+</h1>
+
+
+<a href="dashboard.html" class="back">
+Dashboard
+</a>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="container">
+
+
+
+
+
+
+<div class="health">
+
+
+<h2>
+Network Health Status
+</h2>
+
+
+<div class="status">
+
+98% Healthy
+
+</div>
+
+
+<p>
+All major campus network services are running
+</p>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="alert-container">
+
+
+
+
+
+<div class="alert critical">
+
+
+<div class="icon">
+🚨
+</div>
+
+
+<h3>
+Critical Alert
+</h3>
+
+
+<p>
+Router-02 is disconnected from network.
+</p>
+
+
+<div class="time">
+10 minutes ago
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="alert warning">
+
+
+<div class="icon">
+⚠️
+</div>
+
+
+<h3>
+Warning
+</h3>
+
+
+<p>
+High latency detected in Computer Lab.
+</p>
+
+
+<div class="time">
+25 minutes ago
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="alert normal">
+
+
+<div class="icon">
+✅
+</div>
+
+
+<h3>
+Normal
+</h3>
+
+
+<p>
+New Access Point successfully connected.
+</p>
+
+
+<div class="time">
+1 hour ago
+</div>
+
+
+</div>
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+<div class="section">
+
+
+<h2>
+📡 Alert History
+</h2>
+
+
+
+<table>
+
+
+<tr>
+
+<th>
+Device
+</th>
+
+<th>
+Issue
+</th>
+
+<th>
+Severity
+</th>
+
+<th>
+Time
+</th>
+
+</tr>
+
+
+
+<tr>
+
+<td>
+Router-02
+</td>
+
+<td>
+Connection Lost
+</td>
+
+<td class="red">
+Critical
+</td>
+
+<td>
+09:30 AM
+</td>
+
+</tr>
+
+
+
+
+
+<tr>
+
+<td>
+Switch Lab
+</td>
+
+<td>
+High Traffic
+</td>
+
+<td class="orange">
+Warning
+</td>
+
+<td>
+09:15 AM
+</td>
+
+</tr>
+
+
+
+
+
+<tr>
+
+<td>
+Access Point 05
+</td>
+
+<td>
+Connected
+</td>
+
+<td class="green">
+Normal
+</td>
+
+<td>
+08:45 AM
+</td>
+
+
+</tr>
+
+
+
+</table>
+
+
+
+</div>
+
+
+
+
+
+</div>
+
+
+
+
+
+</body>
+
+</html>
