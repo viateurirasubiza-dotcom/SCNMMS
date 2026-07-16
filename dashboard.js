@@ -1,114 +1,174 @@
 // ======================================
-// SCNMMS DASHBOARD SYSTEM
+// SCNMMS LIVE DASHBOARD API CLIENT
 // ======================================
 
 
-// Get Devices
-
-function loadDashboard(){
-
-
-let devices = JSON.parse(
-
-localStorage.getItem("devices")
-
-) || [];
+const API_URL = "http://127.0.0.1:5000";
 
 
 
 
 
-// Total devices
+// Load Dashboard Data
+
+async function loadDashboard(){
+
+
+try{
+
+
+const response = await fetch(
+
+API_URL + "/report"
+
+);
+
+
+
+const data = await response.json();
+
+
+
+
+
+// Total Devices
+
 
 let total =
-devices.length;
+
+document.getElementById(
+"totalDevices"
+);
+
+
+
+if(total){
+
+total.innerHTML =
+data.total_devices;
+
+}
 
 
 
 
 
-// Online devices
+
+
+// Online Devices
+
 
 let online =
 
-devices.filter(device =>
-
-device.status === "Online"
-
-).length;
+document.getElementById(
+"onlineDevices"
+);
 
 
 
+if(online){
+
+online.innerHTML =
+data.online_devices;
+
+}
 
 
-// Offline devices
+
+
+
+
+
+// Offline Devices
+
 
 let offline =
 
-devices.filter(device =>
-
-device.status === "Offline"
-
-).length;
+document.getElementById(
+"offlineDevices"
+);
 
 
 
+if(offline){
 
 
+offline.innerHTML =
+
+data.total_devices -
+data.online_devices;
 
 
-// Alerts simulation
-
-let alerts = offline;
-
-
-
+}
 
 
 
 
-// Display values
-
-
-let totalBox =
-document.getElementById("totalDevices");
-
-
-let onlineBox =
-document.getElementById("onlineDevices");
-
-
-let offlineBox =
-document.getElementById("offlineDevices");
-
-
-let alertBox =
-document.getElementById("alerts");
 
 
 
-
-if(totalBox)
-
-totalBox.innerHTML = total;
+// Alerts
 
 
+let alerts =
 
-if(onlineBox)
-
-onlineBox.innerHTML = online;
+document.getElementById(
+"alerts"
+);
 
 
 
-if(offlineBox)
-
-offlineBox.innerHTML = offline;
+if(alerts){
 
 
+alerts.innerHTML =
+data.alerts;
 
-if(alertBox)
 
-alertBox.innerHTML = alerts;
+}
+
+
+
+
+
+
+
+// Uptime display
+
+
+let uptime =
+
+document.getElementById(
+"uptime"
+);
+
+
+
+if(uptime){
+
+uptime.innerHTML =
+data.network_uptime;
+
+}
+
+
+
+
+
+
+
+}
+
+catch(error){
+
+
+console.log(
+"Dashboard API Error:",
+error
+);
+
+
+}
 
 
 
@@ -120,8 +180,8 @@ alertBox.innerHTML = alerts;
 
 
 
-// Auto refresh every 5 seconds
 
+// Auto update
 
 setInterval(
 
@@ -130,6 +190,7 @@ loadDashboard,
 5000
 
 );
+
 
 
 
