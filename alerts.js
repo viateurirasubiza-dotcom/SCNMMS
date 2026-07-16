@@ -1,36 +1,35 @@
 // ======================================
-// SCNMMS ALERT MANAGEMENT SYSTEM
+// SCNMMS ALERTS API CLIENT
 // ======================================
 
 
-
-// Get alerts
-
-function getAlerts(){
-
-
-return JSON.parse(
-
-localStorage.getItem("alerts")
-
-) || [];
-
-
-}
+const ALERT_API =
+"http://127.0.0.1:5000";
 
 
 
 
 
-
-// Display alerts
-
-
-function displayAlerts(){
+// ==========================
+// LOAD ALERTS
+// ==========================
 
 
+async function loadAlerts(){
 
-let alerts = getAlerts();
+
+try{
+
+
+const response = await fetch(
+
+ALERT_API + "/alerts"
+
+);
+
+
+
+const alerts = await response.json();
 
 
 
@@ -42,7 +41,8 @@ document.getElementById(
 
 
 
-if(!table) return;
+if(!table)
+return;
 
 
 
@@ -52,21 +52,20 @@ table.innerHTML="";
 
 
 
-alerts.reverse().forEach(alert=>{
-
+alerts.forEach(alert=>{
 
 
 let color="";
 
 
 
-if(alert.severity==="Critical"){
+if(alert.severity=="Critical"){
 
 color="red";
 
 }
 
-else if(alert.severity==="Warning"){
+else if(alert.severity=="Warning"){
 
 color="orange";
 
@@ -93,9 +92,11 @@ ${alert.device}
 </td>
 
 
+
 <td>
 ${alert.message}
 </td>
+
 
 
 <td style="color:${color}">
@@ -103,30 +104,17 @@ ${alert.severity}
 </td>
 
 
+
 <td>
 ${alert.time}
 </td>
 
 
-<td>
-
-<button 
-onclick="deleteAlert(${alert.id})">
-
-Clear
-
-</button>
-
-
-</td>
-
 
 </tr>
 
 
-
 `;
-
 
 
 
@@ -136,44 +124,17 @@ Clear
 
 }
 
+catch(error){
 
 
-
-
-
-
-
-// Delete one alert
-
-
-function deleteAlert(id){
-
-
-
-let alerts=getAlerts();
-
-
-
-alerts = alerts.filter(alert =>
-
-alert.id !== id
-
+console.log(
+"Alert API Error:",
+error
 );
 
 
+}
 
-
-localStorage.setItem(
-
-"alerts",
-
-JSON.stringify(alerts)
-
-);
-
-
-
-displayAlerts();
 
 
 }
@@ -184,20 +145,26 @@ displayAlerts();
 
 
 
-// Clear all alerts
+// ==========================
+// CLEAR ALERTS
+// ==========================
 
 
-function clearAlerts(){
+async function clearAlerts(){
 
 
 
-localStorage.removeItem(
-"alerts"
+await fetch(
+
+ALERT_API+"/alerts",
+
+{
+
+method:"DELETE"
+
+}
+
 );
-
-
-
-displayAlerts();
 
 
 
@@ -206,28 +173,29 @@ alert(
 );
 
 
-}
 
-
-
-
-
-
-
-
-// Count alerts
-
-
-function alertCount(){
-
-
-return getAlerts().length;
+loadAlerts();
 
 
 }
 
 
 
+
+
+
+
+
+// Auto refresh
+
+
+setInterval(
+
+loadAlerts,
+
+5000
+
+);
 
 
 
@@ -235,6 +203,6 @@ return getAlerts().length;
 
 window.onload=function(){
 
-displayAlerts();
+loadAlerts();
 
 };
