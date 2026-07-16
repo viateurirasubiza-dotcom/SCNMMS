@@ -59,6 +59,15 @@ body{
     overflow-y:auto;
 
 }
+    a{
+    display:inline-block;
+    padding:10px;
+    margin-top:10px;
+    color:#00eaff;
+    text-decoration:none;
+    font-weight:bold;
+    cursor:pointer;
+}
 
 /* Animated network background */
 
@@ -405,9 +414,9 @@ LOGIN
     </form>
 <p>
 
-Don't have account?
-
-<a href="/SCNMMS/register.html">
+<button 
+type="button"
+onclick="window.location.href='register.html'">
 
 Create Account
 
@@ -415,7 +424,9 @@ Create Account
 
 </p>
    
-<a href="./forgot_password.html">
+<button 
+type="button"
+onclick="window.location.href='forgot_password.html'">
 
 Forgot Password?
 
