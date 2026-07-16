@@ -364,7 +364,9 @@ Add Device
 
 
 <input 
+id="search"
 class="search"
+onkeyup="searchDevice()"
 type="text"
 placeholder="Search Device">
 
@@ -373,6 +375,12 @@ placeholder="Search Device">
 
 
 <table>
+
+<tbody id="deviceTable">
+
+</tbody>
+
+</table>
 
 
 <tr>
@@ -525,7 +533,7 @@ Delete
 
 
 
-
+<script src="devices.js"></script>
 </body>
 
 </html>
