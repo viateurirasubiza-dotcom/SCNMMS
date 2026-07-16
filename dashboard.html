@@ -299,7 +299,7 @@ to{
 
 
 <body>
-<body onload="checkLogin(); showUser();">
+<body onload="checkLogin(); showUser(); loadDashboard();">
 
 
 <div class="sidebar">
@@ -385,8 +385,8 @@ Admin
 Total Devices
 </h3>
 
-<div class="number">
-120
+<div class="number" id="totalDevices">
+0
 </div>
 
 </div>
@@ -399,8 +399,8 @@ Total Devices
 Online
 </h3>
 
-<div class="number online">
-108
+<div class="number online" id="onlineDevices">
+0
 </div>
 
 </div>
@@ -413,10 +413,9 @@ Online
 Offline
 </h3>
 
-<div class="number offline">
-12
+<div class="number offline" id="offlineDevices">
+0
 </div>
-
 </div>
 
 
@@ -427,8 +426,8 @@ Offline
 Alerts
 </h3>
 
-<div class="number alert">
-5
+<div class="number alert" id="alerts">
+0
 </div>
 
 </div>
@@ -577,6 +576,7 @@ Online
 
 
 <script src="app.js"></script>
+    <script src="dashboard.js"></script>
 
 </body>
 
