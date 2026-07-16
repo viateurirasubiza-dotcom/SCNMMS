@@ -456,13 +456,20 @@ Annual Report
 
 <br><br>
 
-
 <button onclick="generateReport()">
 
-Download PDF
+Generate Network Report
 
 </button>
-
+  <div id="reportResult"
+style="
+margin-top:20px;
+padding:20px;
+background:#00111f;
+border-radius:10px;
+border:1px solid #00eaff;
+">
+</div>
 
 
 </div>
@@ -588,7 +595,7 @@ alert("Network report PDF generation started...");
 }
 
 </script>
-
+<script src="reports.js"></script>
 
 
 </body>
