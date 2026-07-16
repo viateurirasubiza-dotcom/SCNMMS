@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>SCNMMS | Reports</title>
+
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+
+body{
+
+background:#00111f;
+color:white;
+
+}
+
+
+
+/* Header */
+
+.header{
+
+padding:25px;
+
+background:#001b2e;
+
+border-bottom:1px solid #00eaff;
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+}
+
+
+.header h1{
+
+color:#00eaff;
+
+}
+
+
+
+.btn{
+
+background:#00eaff;
+
+color:#00111f;
+
+padding:10px 20px;
+
+border-radius:20px;
+
+text-decoration:none;
+
+font-weight:bold;
+
+}
+
+
+
+
+
+.container{
+
+padding:30px;
+
+}
+
+
+
+/* Report Cards */
+
+
+.cards{
+
+display:grid;
+
+grid-template-columns:repeat(4,1fr);
+
+gap:20px;
+
+}
+
+
+
+.card{
+
+background:#002033;
+
+padding:25px;
+
+border-radius:15px;
+
+border:1px solid #00445f;
+
+text-align:center;
+
+}
+
+
+
+.card h3{
+
+color:#00eaff;
+
+}
+
+
+
+.number{
+
+font-size:35px;
+
+margin-top:15px;
+
+}
+
+
+
+
+
+/* Sections */
+
+
+.section{
+
+margin-top:35px;
+
+background:#002033;
+
+padding:25px;
+
+border-radius:15px;
+
+border:1px solid #00445f;
+
+}
+
+
+
+.section h2{
+
+color:#00eaff;
+
+margin-bottom:20px;
+
+}
+
+
+
+
+
+table{
+
+width:100%;
+
+border-collapse:collapse;
+
+}
+
+
+
+th,td{
+
+padding:15px;
+
+border-bottom:1px solid #00445f;
+
+text-align:center;
+
+}
+
+
+
+th{
+
+color:#00eaff;
+
+}
+
+
+
+
+
+/* Progress */
+
+
+.progress{
+
+background:#00111f;
+
+height:20px;
+
+border-radius:20px;
+
+overflow:hidden;
+
+}
+
+
+
+.bar{
+
+height:100%;
+
+width:98%;
+
+background:#00ff88;
+
+}
+
+
+
+
+
+select{
+
+padding:12px;
+
+background:#00111f;
+
+color:white;
+
+border:1px solid #00eaff;
+
+border-radius:8px;
+
+}
+
+
+
+button{
+
+padding:12px 25px;
+
+border:none;
+
+border-radius:20px;
+
+background:#00eaff;
+
+font-weight:bold;
+
+cursor:pointer;
+
+}
+
+
+
+button:hover{
+
+background:white;
+
+}
+
+
+
+</style>
+
+
+</head>
+
+
+
+<body>
+
+
+
+<div class="header">
+
+
+<h1>
+📊 Network Reports Center
+</h1>
+
+
+<a href="dashboard.html" class="btn">
+Dashboard
+</a>
+
+
+</div>
+
+
+
+
+
+
+
+
+<div class="container">
+
+
+
+
+
+
+
+<div class="cards">
+
+
+
+<div class="card">
+
+<h3>
+Network Uptime
+</h3>
+
+<div class="number">
+98%
+</div>
+
+</div>
+
+
+
+
+
+<div class="card">
+
+<h3>
+Total Devices
+</h3>
+
+<div class="number">
+120
+</div>
+
+</div>
+
+
+
+
+
+<div class="card">
+
+<h3>
+Data Usage
+</h3>
+
+<div class="number">
+850GB
+</div>
+
+</div>
+
+
+
+
+
+<div class="card">
+
+<h3>
+Resolved Alerts
+</h3>
+
+<div class="number">
+45
+</div>
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+<div class="section">
+
+
+<h2>
+📡 Network Availability
+</h2>
+
+
+<br>
+
+
+<div class="progress">
+
+<div class="bar"></div>
+
+</div>
+
+
+<p style="margin-top:15px">
+Monthly uptime: 98%
+</p>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<div class="section">
+
+
+<h2>
+Generate Report
+</h2>
+
+
+<br>
+
+
+<select>
+
+<option>
+Daily Report
+</option>
+
+<option>
+Weekly Report
+</option>
+
+<option>
+Monthly Report
+</option>
+
+
+<option>
+Annual Report
+</option>
+
+
+</select>
+
+
+<br><br>
+
+
+<button onclick="generateReport()">
+
+Download PDF
+
+</button>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+<div class="section">
+
+
+<h2>
+📈 Device Performance History
+</h2>
+
+
+
+
+<table>
+
+
+<tr>
+
+<th>
+Date
+</th>
+
+<th>
+Online Devices
+</th>
+
+<th>
+Offline Devices
+</th>
+
+<th>
+Network Status
+</th>
+
+
+</tr>
+
+
+
+<tr>
+
+<td>
+16 July 2026
+</td>
+
+<td>
+118
+</td>
+
+<td>
+2
+</td>
+
+<td style="color:#00ff88">
+Excellent
+</td>
+
+
+</tr>
+
+
+
+
+
+<tr>
+
+<td>
+15 July 2026
+</td>
+
+<td>
+115
+</td>
+
+<td>
+5
+</td>
+
+<td style="color:#00ff88">
+Good
+</td>
+
+
+</tr>
+
+
+
+
+</table>
+
+
+
+</div>
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+<script>
+
+function generateReport(){
+
+alert("Network report PDF generation started...");
+
+}
+
+</script>
+
+
+
+</body>
+
+</html>
