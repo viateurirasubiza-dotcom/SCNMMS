@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>SCNMMS | Login</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+
+body{
+
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background:
+    radial-gradient(circle at top,#003b66,#00111f);
+
+    overflow:hidden;
+}
+
+
+/* Animated network background */
+
+body::before{
+
+    content:"";
+    position:absolute;
+
+    width:600px;
+    height:600px;
+
+    background:
+    linear-gradient(
+        45deg,
+        transparent,
+        #00eaff,
+        transparent
+    );
+
+    animation:rotate 10s linear infinite;
+
+    opacity:0.15;
+}
+
+
+@keyframes rotate{
+
+    from{
+        transform:rotate(0deg);
+    }
+
+    to{
+        transform:rotate(360deg);
+    }
+
+}
+
+
+/* Login Card */
+
+.login-box{
+
+    width:380px;
+
+    padding:35px;
+
+    background:
+    rgba(255,255,255,0.08);
+
+    backdrop-filter:blur(15px);
+
+    border-radius:20px;
+
+    border:1px solid rgba(0,234,255,0.4);
+
+    box-shadow:
+    0 0 25px #00eaff;
+
+    color:white;
+
+    text-align:center;
+
+    position:relative;
+
+}
+
+
+/* Logo */
+
+.logo{
+
+    font-size:60px;
+
+    margin-bottom:10px;
+
+}
+
+
+h1{
+
+    color:#00eaff;
+
+    letter-spacing:3px;
+
+}
+
+
+p{
+
+    font-size:14px;
+
+    margin:15px 0 25px;
+
+    color:#ddd;
+
+}
+
+
+
+/* Inputs */
+
+.input-group{
+
+    text-align:left;
+
+    margin-bottom:20px;
+
+}
+
+
+label{
+
+    display:block;
+
+    margin-bottom:7px;
+
+    color:#00eaff;
+
+}
+
+
+input,
+select{
+
+    width:100%;
+
+    padding:12px;
+
+    border:none;
+
+    outline:none;
+
+    border-radius:8px;
+
+    background:#001b2e;
+
+    color:white;
+
+    border:1px solid #00eaff;
+
+}
+
+
+
+button{
+
+    width:100%;
+
+    padding:13px;
+
+    margin-top:10px;
+
+    border:none;
+
+    border-radius:25px;
+
+    background:#00eaff;
+
+    color:#00111f;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    font-size:16px;
+
+    transition:.3s;
+
+}
+
+
+button:hover{
+
+    background:white;
+
+    box-shadow:0 0 20px #00eaff;
+
+}
+
+
+.footer{
+
+    margin-top:25px;
+
+    font-size:12px;
+
+    color:#aaa;
+
+}
+
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="login-box">
+
+
+<div class="logo">
+🌐
+</div>
+
+
+<h1>
+SCNMMS
+</h1>
+
+
+<p>
+Smart Campus Network Monitoring
+<br>
+and Management System
+</p>
+
+
+
+<form>
+
+
+<div class="input-group">
+
+<label>
+Username
+</label>
+
+<input 
+type="text"
+placeholder="Enter username">
+
+
+</div>
+
+
+
+<div class="input-group">
+
+<label>
+Password
+</label>
+
+<input 
+type="password"
+placeholder="Enter password">
+
+
+</div>
+
+
+
+<div class="input-group">
+
+<label>
+Role
+</label>
+
+
+<select>
+
+<option>
+Network Administrator
+</option>
+
+<option>
+Network Technician
+</option>
+
+
+</select>
+
+
+</div>
+
+
+
+<button>
+LOGIN
+</button>
+
+
+</form>
+
+
+
+<div class="footer">
+
+© 2026 Smart Campus Network System
+
+</div>
+
+
+</div>
+
+
+</body>
+
+</html>
