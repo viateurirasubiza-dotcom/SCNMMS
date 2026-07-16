@@ -1,171 +1,95 @@
 // ======================================
-// SCNMMS DEVICE MANAGEMENT
+// SCNMMS DEVICE MANAGEMENT API CLIENT
 // ======================================
 
 
-// Load devices
-
-let devices = JSON.parse(
-    localStorage.getItem("devices")
-) || [];
+const API = "http://127.0.0.1:5000";
 
 
 
 
+// ==========================
+// LOAD DEVICES
+// ==========================
 
-// Add Device Function
-
-function addDevice(){
-
-
-    let name =
-    document.getElementById("deviceName").value;
+async function loadDevices(){
 
 
-    let ip =
-    document.getElementById("ipAddress").value;
-
-
-    let mac =
-    document.getElementById("macAddress").value;
-
-
-    let type =
-    document.getElementById("deviceType").value;
-
-
-    let building =
-    document.getElementById("building").value;
-
-
-    let room =
-    document.getElementById("room").value;
-
-
-
-
-    let device = {
-
-
-        id: Date.now(),
-
-        name:name,
-
-        ip:ip,
-
-        mac:mac,
-
-        type:type,
-
-        building:building,
-
-        room:room,
-
-        status:"Online"
-
-
-    };
-
-
-
-    devices.push(device);
-
-
-
-    localStorage.setItem(
-        "devices",
-        JSON.stringify(devices)
+    const response = await fetch(
+        API + "/devices"
     );
 
 
-
-    alert("Device Added Successfully");
-
+    const devices = await response.json();
 
 
-    displayDevices();
+    let table =
+    document.getElementById(
+        "deviceTable"
+    );
 
 
-}
-
-
-
+    table.innerHTML="";
 
 
 
-// Display Devices
+    devices.forEach(device=>{
 
 
-function displayDevices(){
+        table.innerHTML += `
+
+        <tr>
+
+        <td>
+        ${device.name}
+        </td>
 
 
-let table =
-document.getElementById("deviceTable");
+        <td>
+        ${device.ip}
+        </td>
 
 
-
-if(!table) return;
-
-
-
-table.innerHTML="";
+        <td>
+        ${device.mac}
+        </td>
 
 
-
-devices.forEach(device=>{
-
-
-table.innerHTML += `
-
-<tr>
+        <td>
+        ${device.device_type}
+        </td>
 
 
-<td>${device.name}</td>
-
-<td>${device.ip}</td>
-
-<td>${device.mac}</td>
-
-<td>${device.type}</td>
-
-<td>
-${device.building}
-/
-${device.room}
-</td>
+        <td>
+        ${device.location}
+        </td>
 
 
-<td class="online">
-
-${device.status}
-
-</td>
+        <td class="${device.status}">
+        ${device.status}
+        </td>
 
 
 
-<td>
+        <td>
+
+        <button
+        class="delete"
+        onclick="deleteDevice(${device.id})">
+
+        Delete
+
+        </button>
+
+        </td>
 
 
-<button 
-onclick="deleteDevice(${device.id})"
-class="delete">
+        </tr>
 
-Delete
-
-</button>
+        `;
 
 
-</td>
-
-
-</tr>
-
-`;
-
-
-
-});
-
+    });
 
 
 }
@@ -176,33 +100,98 @@ Delete
 
 
 
-
-// Delete Device
-
-
-function deleteDevice(id){
+// ==========================
+// ADD DEVICE
+// ==========================
 
 
+async function addDevice(){
 
-devices =
-devices.filter(device =>
-device.id !== id
+
+
+let device={
+
+
+name:
+document.getElementById(
+"deviceName"
+).value,
+
+
+ip:
+document.getElementById(
+"ipAddress"
+).value,
+
+
+mac:
+document.getElementById(
+"macAddress"
+).value,
+
+
+device_type:
+document.getElementById(
+"deviceType"
+).value,
+
+
+location:
+
+document.getElementById(
+"building"
+).value
++
+" "
++
+document.getElementById(
+"room"
+).value
+
+
+
+};
+
+
+
+
+
+await fetch(
+
+API+"/devices",
+
+{
+
+method:"POST",
+
+
+headers:{
+
+"Content-Type":
+"application/json"
+
+},
+
+
+body:
+
+JSON.stringify(device)
+
+
+}
+
 );
 
 
 
-localStorage.setItem(
 
-"devices",
-
-JSON.stringify(devices)
-
+alert(
+"Device Added"
 );
 
 
 
-displayDevices();
-
+loadDevices();
 
 
 }
@@ -214,11 +203,44 @@ displayDevices();
 
 
 
-// Search Device
+// ==========================
+// DELETE DEVICE
+// ==========================
 
+
+async function deleteDevice(id){
+
+
+
+await fetch(
+
+API+"/devices/"+id,
+
+{
+
+method:"DELETE"
+
+}
+
+);
+
+
+
+
+loadDevices();
+
+
+}
+
+
+
+
+
+
+
+// Search
 
 function searchDevice(){
-
 
 
 let value =
@@ -238,38 +260,32 @@ document
 
 
 
-
 rows.forEach(row=>{
 
 
-let text =
-row.innerText.toLowerCase();
+if(
+row.innerText
+.toLowerCase()
+.includes(value)
 
+)
 
-
-if(text.includes(value)){
-
+{
 
 row.style.display="";
 
-
 }
-
 
 else{
 
-
 row.style.display="none";
 
-
 }
-
 
 
 });
 
 
-
 }
 
 
@@ -278,11 +294,9 @@ row.style.display="none";
 
 
 
-// Load automatically
-
 
 window.onload=function(){
 
-displayDevices();
+loadDevices();
 
 };
