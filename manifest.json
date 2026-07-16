@@ -1,0 +1,16 @@
+{
+  "name": "NET VIATEUR SYSTEM",
+  "short_name": "NET VIATEUR",
+  "description": "Smart Campus Network Monitoring and Management System",
+  "start_url": "/SCNMMS/",
+  "display": "standalone",
+  "background_color": "#00111f",
+  "theme_color": "#00eaff",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "512x512",
+      "type": "image/x-icon"
+    }
+  ]
+}
