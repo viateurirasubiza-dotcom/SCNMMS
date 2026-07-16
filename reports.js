@@ -1,202 +1,42 @@
 // ======================================
-// SCNMMS REPORT GENERATION SYSTEM
+// SCNMMS REPORT API CLIENT
 // ======================================
 
 
+const REPORT_API =
+"http://127.0.0.1:5000";
 
-function getReportDevices(){
 
 
-return JSON.parse(
 
-localStorage.getItem("devices")
 
-) || [];
 
+// ==========================
+// LOAD REPORT
+// ==========================
 
-}
 
+async function loadReport(){
 
 
+try{
 
 
+const response = await fetch(
 
-function getReportAlerts(){
-
-
-return JSON.parse(
-
-localStorage.getItem("alerts")
-
-) || [];
-
-
-}
-
-
-
-
-
-
-
-// Generate Network Report
-
-
-function generateReport(){
-
-
-
-let devices = getReportDevices();
-
-
-let alerts = getReportAlerts();
-
-
-
-
-
-let total = devices.length;
-
-
-
-let online = devices.filter(device =>
-
-device.status==="Online"
-
-).length;
-
-
-
-
-
-let offline = devices.filter(device =>
-
-device.status==="Offline"
-
-).length;
-
-
-
-
-
-
-
-let uptime = 0;
-
-
-
-if(total > 0){
-
-
-uptime =
-
-Math.round(
-
-(online / total) * 100
-
-);
-
-
-}
-
-
-
-
-
-
-
-let report = {
-
-
-
-date:
-new Date().toLocaleString(),
-
-
-
-totalDevices:
-total,
-
-
-
-onlineDevices:
-online,
-
-
-
-offlineDevices:
-offline,
-
-
-
-networkUptime:
-uptime + "%",
-
-
-
-totalAlerts:
-alerts.length
-
-
-
-};
-
-
-
-
-
-
-
-// Save report history
-
-
-let history = JSON.parse(
-
-localStorage.getItem("reports")
-
-) || [];
-
-
-
-
-history.push(report);
-
-
-
-localStorage.setItem(
-
-"reports",
-
-JSON.stringify(history)
+REPORT_API + "/report"
 
 );
 
 
 
-
-
-displayReport(report);
-
-
-
-}
+const report = await response.json();
 
 
 
 
 
-
-
-
-
-// Display Report
-
-
-function displayReport(report){
-
-
-
-let output =
+let result =
 
 document.getElementById(
 "reportResult"
@@ -204,61 +44,80 @@ document.getElementById(
 
 
 
-if(!output)
+if(!result)
 return;
 
 
 
 
 
-output.innerHTML = `
+result.innerHTML = `
 
 
+<h2>
+📊 Network Report
+</h2>
 
-<h3>
-Latest Network Report
-</h3>
 
-
-<p>
-Date:
-${report.date}
-</p>
+<hr>
 
 
 <p>
-Total Devices:
-${report.totalDevices}
-</p>
+<b>Total Devices:</b>
 
+${report.total_devices}
 
-
-<p>
-Online:
-${report.onlineDevices}
 </p>
 
 
 
 <p>
-Offline:
-${report.offlineDevices}
+<b>Online Devices:</b>
+
+${report.online_devices}
+
 </p>
 
 
 
 <p>
-Network Uptime:
-${report.networkUptime}
+<b>Offline Devices:</b>
+
+${
+
+report.total_devices -
+report.online_devices
+
+}
+
 </p>
 
 
 
 <p>
-Active Alerts:
-${report.totalAlerts}
+<b>Network Uptime:</b>
+
+${report.network_uptime}
+
 </p>
 
+
+
+<p>
+<b>Active Alerts:</b>
+
+${report.alerts}
+
+</p>
+
+
+
+<p>
+<b>Generated:</b>
+
+${report.generated}
+
+</p>
 
 
 `;
@@ -267,32 +126,14 @@ ${report.totalAlerts}
 
 }
 
+catch(error){
 
 
+console.log(
 
+"Report API Error:",
 
-
-
-// Load Last Report
-
-
-function loadLastReport(){
-
-
-let reports = JSON.parse(
-
-localStorage.getItem("reports")
-
-) || [];
-
-
-
-if(reports.length > 0){
-
-
-displayReport(
-
-reports[reports.length-1]
+error
 
 );
 
@@ -307,10 +148,25 @@ reports[reports.length-1]
 
 
 
+
+
+// Refresh Report
+
+setInterval(
+
+loadReport,
+
+10000
+
+);
+
+
+
+
+
+
 window.onload=function(){
 
-
-loadLastReport();
-
+loadReport();
 
 };
