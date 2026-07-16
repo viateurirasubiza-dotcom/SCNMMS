@@ -1,0 +1,7 @@
+Flask
+Flask-CORS
+SQLAlchemy
+requests
+python-dotenv
+psutil
+scapy
