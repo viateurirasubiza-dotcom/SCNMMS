@@ -136,7 +136,101 @@ def login():
         "Invalid login"
 
     })
+@app.route("/register", methods=["POST"])
 
+def register():
+
+
+    data=request.json
+
+
+    conn=get_connection()
+
+
+
+    existing = conn.execute(
+
+    """
+
+    SELECT * FROM users
+
+    WHERE username=?
+
+    """,
+
+    (data["username"],)
+
+    ).fetchone()
+
+
+
+    if existing:
+
+
+        conn.close()
+
+
+        return jsonify({
+
+            "success":False,
+
+            "message":
+            "Username already exists"
+
+        })
+
+
+
+
+
+    conn.execute(
+
+    """
+
+    INSERT INTO users
+
+    (
+
+    username,
+
+    password,
+
+    role
+
+    )
+
+    VALUES(?,?,?)
+
+    """,
+
+    (
+
+    data["username"],
+
+    data["password"],
+
+    data["role"]
+
+    )
+
+    )
+
+
+
+    conn.commit()
+
+    conn.close()
+
+
+
+    return jsonify({
+
+        "success":True,
+
+        "message":
+        "Account created successfully"
+
+    })
 
 
 
