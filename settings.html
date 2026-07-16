@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>SCNMMS | Settings</title>
+
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+
+body{
+
+background:#00111f;
+color:white;
+
+}
+
+
+
+/* Header */
+
+.header{
+
+padding:25px;
+
+background:#001b2e;
+
+border-bottom:1px solid #00eaff;
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+}
+
+
+.header h1{
+
+color:#00eaff;
+
+}
+
+
+
+.back{
+
+text-decoration:none;
+
+background:#00eaff;
+
+color:#00111f;
+
+padding:10px 20px;
+
+border-radius:20px;
+
+font-weight:bold;
+
+}
+
+
+
+/* Main */
+
+
+.container{
+
+padding:30px;
+
+display:grid;
+
+grid-template-columns:repeat(2,1fr);
+
+gap:25px;
+
+}
+
+
+
+
+
+.card{
+
+background:#002033;
+
+padding:25px;
+
+border-radius:15px;
+
+border:1px solid #00445f;
+
+}
+
+
+
+.card h2{
+
+color:#00eaff;
+
+margin-bottom:20px;
+
+}
+
+
+
+input,
+select{
+
+width:100%;
+
+padding:12px;
+
+margin:10px 0;
+
+background:#00111f;
+
+border:1px solid #00eaff;
+
+border-radius:8px;
+
+color:white;
+
+}
+
+
+
+button{
+
+padding:12px 25px;
+
+background:#00eaff;
+
+border:none;
+
+border-radius:20px;
+
+font-weight:bold;
+
+cursor:pointer;
+
+}
+
+
+
+button:hover{
+
+background:white;
+
+}
+
+
+
+
+
+.info{
+
+line-height:2;
+
+}
+
+
+
+.status{
+
+color:#00ff88;
+
+font-size:22px;
+
+}
+
+
+
+</style>
+
+</head>
+
+
+<body>
+
+
+
+
+<div class="header">
+
+
+<h1>
+⚙ System Settings
+</h1>
+
+
+<a href="dashboard.html" class="back">
+Dashboard
+</a>
+
+
+</div>
+
+
+
+
+
+
+<div class="container">
+
+
+
+
+
+
+
+<div class="card">
+
+
+<h2>
+🔐 Change Password
+</h2>
+
+
+<input 
+type="password"
+placeholder="Current Password">
+
+
+<input 
+type="password"
+placeholder="New Password">
+
+
+<input 
+type="password"
+placeholder="Confirm Password">
+
+
+
+<button>
+Update Password
+</button>
+
+
+</div>
+
+
+
+
+
+
+
+
+<div class="card">
+
+
+<h2>
+👤 Administrator Profile
+</h2>
+
+
+<div class="info">
+
+
+<p>
+Name: Network Administrator
+</p>
+
+
+<p>
+Role: System Admin
+</p>
+
+
+<p>
+Access Level: Full Control
+</p>
+
+
+<p>
+Status:
+<span class="status">
+Active
+</span>
+</p>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<div class="card">
+
+
+<h2>
+🌐 Network Configuration
+</h2>
+
+
+
+<select>
+
+<option>
+Campus Main Network
+</option>
+
+
+<option>
+Computer Laboratory Network
+</option>
+
+
+<option>
+Administration Network
+</option>
+
+
+</select>
+
+
+
+
+<input 
+type="text"
+placeholder="Gateway IP (Example: 192.168.1.1)">
+
+
+
+<input 
+type="text"
+placeholder="DNS Server">
+
+
+
+<button>
+Save Configuration
+</button>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+<div class="card">
+
+
+<h2>
+💾 Database Backup
+</h2>
+
+
+<p>
+Create a secure backup of network monitoring data.
+</p>
+
+
+<br>
+
+
+<button onclick="backup()">
+
+Backup Database
+
+</button>
+
+
+
+<br><br>
+
+
+<button onclick="restore()">
+
+Restore Database
+
+</button>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<div class="card">
+
+
+<h2>
+🖥 System Information
+</h2>
+
+
+
+<div class="info">
+
+<p>
+System Name: SCNMMS
+</p>
+
+
+<p>
+Version: 1.0.0
+</p>
+
+
+<p>
+Developed Year: 2026
+</p>
+
+
+<p>
+Security: Enabled 🔒
+</p>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+<script>
+
+function backup(){
+
+alert("Database backup completed successfully!");
+
+}
+
+
+
+function restore(){
+
+alert("Database restore process started!");
+
+}
+
+</script>
+
+
+
+</body>
+
+</html>
