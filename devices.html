@@ -301,17 +301,11 @@ Dashboard
 
 <div class="form">
 
+<input id="deviceName" type="text" placeholder="Device Name">
 
-<input type="text" placeholder="Device Name">
-
-
-<input type="text" placeholder="IP Address">
-
-
-<input type="text" placeholder="MAC Address">
-
-
-<select>
+<input id="ipAddress" type="text" placeholder="IP Address">
+  <input id="macAddress" type="text" placeholder="MAC Address">
+<select id="deviceType">
 
 <option>
 Router
@@ -337,16 +331,16 @@ Computer
 
 
 
-<input type="text" placeholder="Building">
+    <input id="building" type="text" placeholder="Building">
+    <input id="room" type="text" placeholder="Room">
 
 
-<input type="text" placeholder="Room">
 
 
-<button>
+
+<button onclick="addDevice()">
 Add Device
 </button>
-
 
 
 </div>
