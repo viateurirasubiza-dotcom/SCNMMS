@@ -5,4 +5,4 @@ requests
 python-dotenv
 psutil
 scapy
-gunicorn
+gunicorn==23.0.0
