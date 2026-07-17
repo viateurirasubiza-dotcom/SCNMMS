@@ -288,6 +288,45 @@ to{
 }
 
 }
+    @media (max-width:768px){
+
+.sidebar{
+    width:220px;
+}
+
+.main{
+    margin-left:220px;
+    padding:20px;
+}
+
+.cards{
+    grid-template-columns:repeat(2,1fr);
+}
+
+}
+
+@media (max-width:600px){
+
+.sidebar{
+    position:relative;
+    width:100%;
+    height:auto;
+}
+
+.main{
+    margin-left:0;
+}
+
+.cards{
+    grid-template-columns:1fr;
+}
+
+.header{
+    flex-direction:column;
+    gap:15px;
+}
+
+}
 
 
 
@@ -298,57 +337,30 @@ to{
 
 
 
-<body>
-<body onload="checkLogin(); showUser(); loadDashboard();">
+<body onload="checkLogin(); showUser();">
 
 
 <div class="sidebar">
 
+    <div class="logo">
+        🌐 SCNMMS
+    </div>
 
-<div class="logo">
+    <a href="dashboard.html">🏠 Dashboard</a>
 
-🌐 SCNMMS
+    <a href="devices.html">🖥 Devices</a>
 
-</div>
+    <a href="topology.html">🌐 Network Topology</a>
 
+    <a href="alerts.html">⚠ Alerts</a>
 
+    <a href="reports.html">📊 Reports</a>
 
-<a href="#">
-🏠 Dashboard
-</a>
+    <a href="settings.html">⚙ Settings</a>
 
-
-<a href="#">
-🖥 Devices
-</a>
-
-
-<a href="#">
-🌐 Network Topology
-</a>
-
-
-<a href="#">
-⚠ Alerts
-</a>
-
-
-<a href="#">
-📊 Reports
-</a>
-
-
-<a href="#">
-⚙ Settings
-</a>
-
-
+    <a href="#" onclick="logout()">🚪 Logout</a>
 
 </div>
-
-
-
-
 
 <div class="main">
 
