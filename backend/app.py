@@ -1,3 +1,59 @@
+# =========================================
+# SCNMMS COMPLETE REST API
+# Smart Campus Network Monitoring System
+# =========================================
+
+
+from flask import Flask, jsonify, request
+from flask_cors import CORS
+from datetime import datetime
+
+
+from database import (
+    create_tables,
+    get_connection
+)
+
+
+from network_scanner import (
+    scan_network
+)
+
+
+
+# ==========================
+# FLASK APP INITIALIZATION
+# ==========================
+
+app = Flask(__name__)
+
+CORS(app)
+
+
+# Create database tables
+create_tables()
+
+
+
+# ==========================
+# HOME API
+# ==========================
+
+@app.route("/")
+def home():
+
+    return jsonify({
+
+        "system": "SCNMMS",
+
+        "message": "Smart Campus Network Monitoring API",
+
+        "status": "Running"
+
+    })
+
+
+
 # ==========================
 # REGISTER API
 # ==========================
@@ -8,6 +64,7 @@ def register():
     data = request.json
 
     conn = get_connection()
+
 
     existing = conn.execute(
         """
@@ -102,9 +159,7 @@ def forgot_password():
 
     if not user:
 
-
         conn.close()
-
 
         return jsonify({
 
@@ -113,7 +168,6 @@ def forgot_password():
             "message": "User not found"
 
         })
-
 
 
     conn.execute(
@@ -128,11 +182,8 @@ def forgot_password():
         """,
 
         (
-
             password,
-
             username
-
         )
 
     )
