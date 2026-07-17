@@ -1,81 +1,34 @@
-const API =
-"http://127.0.0.1:5000";
+function register() {
 
+    const fullname = document.getElementById("fullname").value.trim();
+    const username = document.getElementById("username").value.trim();
+    const password = document.getElementById("password").value.trim();
+    const role = document.getElementById("role").value;
 
+    if (!fullname || !username || !password) {
+        alert("Please fill all fields.");
+        return;
+    }
 
+    let users = JSON.parse(localStorage.getItem("users")) || [];
 
-async function register(){
+    const exists = users.find(u => u.username === username);
 
+    if (exists) {
+        alert("Username already exists.");
+        return;
+    }
 
-let user={
+    users.push({
+        fullname,
+        username,
+        password,
+        role
+    });
 
+    localStorage.setItem("users", JSON.stringify(users));
 
-fullname:
-document.getElementById("fullname").value,
+    alert("Account created successfully!");
 
-
-username:
-document.getElementById("username").value,
-
-
-password:
-document.getElementById("password").value,
-
-
-role:
-document.getElementById("role").value
-
-
-};
-
-
-
-
-
-let response = await fetch(
-
-API+"/register",
-
-{
-
-method:"POST",
-
-headers:{
-
-"Content-Type":
-"application/json"
-
-},
-
-body:
-
-JSON.stringify(user)
-
-}
-
-);
-
-
-
-
-
-let data =
-await response.json();
-
-
-
-alert(data.message);
-
-
-
-if(data.success){
-
-
-window.location.href="index.html";
-
-
-}
-
-
-
+    window.location.href = "index.html";
 }
